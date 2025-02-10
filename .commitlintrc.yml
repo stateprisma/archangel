@@ -23,6 +23,7 @@ rules:
       - commitlint
       - readme
       - tools
+      - cli
       - x64
       - x64/win
       - x64/nix
