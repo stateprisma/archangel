@@ -24,9 +24,11 @@ rules:
       - readme
       - tools
       - cli
-      - x64
-      - x64/win
-      - x64/nix
+      - loader
+      - disasm
+      - irgen
+      - arm64
+      - compile
   subject-empty:
     level: error
   type:
