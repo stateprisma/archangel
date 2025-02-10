@@ -25,7 +25,7 @@ rules:
       - tools
       - cli
       - loader
-      - disasm
+      - decoder
       - irgen
       - arm64
       - compile
