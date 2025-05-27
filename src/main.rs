@@ -1,5 +1,5 @@
 use clap::Parser;
-use object::Object;
+use loader::bininfo::BinInfo;
 
 mod loader;
 
@@ -19,8 +19,15 @@ fn main() {
 
     println!("File info:");
     println!(" - Architecture: {:?}", binfile.architecture());
-    println!(" - Endianness:   {:?}", binfile.endianness());
+    println!(
+        " - Endianness:   {}",
+        match binfile.is_little_endian() {
+            true => "Little Endian",
+            _ => "Big Endian",
+        }
+    );
     println!(" - Bin format:   {:?}", binfile.format());
+    println!(" - Entry point:  0x{:x}", binfile.entry_point());
 
     // Free mmap
     loader::binload::free_mmap(mmap);
