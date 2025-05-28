@@ -40,4 +40,19 @@ impl<'a> BinInfo for BinFormat<'a> {
             BinFormat::Mach(mach) => mach.is_little_endian(),
         }
     }
+
+    fn text_section(&self) -> (u64, usize) {
+        match self {
+            BinFormat::Elf(elf) => elf.text_section(),
+            BinFormat::PE(pe) => pe.text_section(),
+            BinFormat::Mach(mach) => mach.text_section(),
+        }
+    }
+    fn va_to_offset(&self, va: u64) -> usize {
+        match self {
+            BinFormat::Elf(elf) => elf.va_to_offset(va),
+            BinFormat::PE(pe) => pe.va_to_offset(va),
+            BinFormat::Mach(mach) => mach.va_to_offset(va),
+        }
+    }
 }
