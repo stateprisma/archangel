@@ -2,6 +2,7 @@ use clap::Parser;
 use loader::bininfo::BinInfo;
 
 mod loader;
+mod decoder;
 
 /// An x64 to ARM64 binary recompiler
 #[derive(Parser, Debug)]
@@ -28,6 +29,9 @@ fn main() {
     );
     println!(" - Bin format:   {:?}", binfile.format());
     println!(" - Entry point:  0x{:x}", binfile.entry_point());
+
+    // Disassemble code
+    let _ = decoder::disasm::disassemble_from_entry(&binfile, mmap);
 
     // Free mmap
     loader::binload::free_mmap(mmap);
